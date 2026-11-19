@@ -1,0 +1,355 @@
+{
+  "items": {
+    "accessibility": {
+      "g": "Design",
+      "name": "Accessibility, responsive layouts, UI states",
+      "type": "UX"
+    },
+    "agent_frameworks": {
+      "g": "Coding and engineering",
+      "name": "Agent frameworks (LangGraph, CrewAI, AutoGen, Semantic Kernel)",
+      "type": "Coding"
+    },
+    "ai_portfolio": {
+      "g": "Credentials and proof",
+      "name": "Portfolio showing AI-assisted or AI-built work",
+      "type": "Proof of work"
+    },
+    "ai_tools_daily": {
+      "g": "Ways of working",
+      "name": "AI tools and AI coding assistants in daily work",
+      "type": "Productivity"
+    },
+    "amazon_connect": {
+      "g": "Platforms and tools",
+      "name": "Amazon Connect ecosystem",
+      "type": "Platform"
+    },
+    "analytics_kpis": {
+      "g": "Data and analytics",
+      "name": "Bot and adoption analytics, KPIs",
+      "type": "Analytics"
+    },
+    "api": {
+      "g": "Coding and engineering",
+      "name": "REST APIs and API integration",
+      "type": "Integration"
+    },
+    "asr_nlu": {
+      "g": "Platforms and tools",
+      "name": "ASR/NLU under telephony",
+      "type": "Voice tech"
+    },
+    "automation": {
+      "g": "Platforms and tools",
+      "name": "Building process automations and workflows",
+      "type": "Automation"
+    },
+    "b2b_saas": {
+      "g": "Domain",
+      "name": "Complex products: B2B SaaS, marketplaces, content systems, internal tools",
+      "type": "Domain"
+    },
+    "builder_mindset": {
+      "g": "Ways of working",
+      "name": "Experimental, builder mindset",
+      "type": "Mindset"
+    },
+    "ccaas": {
+      "g": "Platforms and tools",
+      "name": "Contact-centre stack: IVR, SIP, CTI, CCaaS",
+      "type": "Voice infra"
+    },
+    "change_mgmt": {
+      "g": "Consulting and commercial",
+      "name": "Change management and product delivery",
+      "type": "Delivery"
+    },
+    "client": {
+      "g": "Consulting and commercial",
+      "name": "Client-facing delivery and requirements gathering",
+      "type": "Consulting"
+    },
+    "cloud_llm": {
+      "g": "Coding and engineering",
+      "name": "Cloud AI platforms and LLM APIs",
+      "type": "Cloud/ML"
+    },
+    "code_prototyping": {
+      "g": "Coding and engineering",
+      "name": "Prototyping in code and design-to-code with AI tools",
+      "type": "Coding-light/Design"
+    },
+    "cognigy": {
+      "g": "Platforms and tools",
+      "name": "Cognigy",
+      "type": "Platform"
+    },
+    "commercial": {
+      "g": "Consulting and commercial",
+      "name": "Commercial acumen: deals, value propositions, sales cycles",
+      "type": "Commercial"
+    },
+    "content_portfolio": {
+      "g": "Credentials and proof",
+      "name": "Content portfolio: links to videos, articles, courses",
+      "type": "Proof of work"
+    },
+    "conv_design": {
+      "g": "Design",
+      "name": "Conversational/dialog design and agent configuration",
+      "type": "Design"
+    },
+    "conv_review": {
+      "g": "Data and analytics",
+      "name": "Reviewing and analysing real conversations",
+      "type": "Analysis"
+    },
+    "courses_lms": {
+      "g": "Communication and content",
+      "name": "Online course creation and LMS",
+      "type": "Enablement"
+    },
+    "cross_functional": {
+      "g": "Ways of working",
+      "name": "Cross-functional bridge work without direct authority",
+      "type": "Collaboration"
+    },
+    "data_ml": {
+      "g": "Data and analytics",
+      "name": "Data analysis and machine-learning-based proposals",
+      "type": "Data/ML"
+    },
+    "databases": {
+      "g": "Coding and engineering",
+      "name": "Databases for memory, history and audit trails",
+      "type": "Data/infra"
+    },
+    "declarative_gen_ui": {
+      "g": "Design",
+      "name": "Declarative and generative UI (components as specs; interfaces a model assembles)",
+      "type": "Design/AI"
+    },
+    "delivery_ownership": {
+      "g": "Consulting and commercial",
+      "name": "Delivery ownership: go-live, hypercare, risk",
+      "type": "Delivery"
+    },
+    "design_direction": {
+      "g": "Ways of working",
+      "name": "Staff-level design direction: patterns, systems, strategy, critique",
+      "type": "Leadership"
+    },
+    "design_eng_collab": {
+      "g": "Ways of working",
+      "name": "Designer and engineer collaboration through implementation",
+      "type": "Collaboration"
+    },
+    "design_portfolio": {
+      "g": "Credentials and proof",
+      "name": "Design portfolio of shipped digital products, reasoning visible",
+      "type": "Proof of work"
+    },
+    "devops": {
+      "g": "Coding and engineering",
+      "name": "Deployment and monitoring: Docker, Kubernetes",
+      "type": "DevOps"
+    },
+    "documentation": {
+      "g": "Communication and content",
+      "name": "Documentation, knowledge transfer, reusable assets",
+      "type": "Communication"
+    },
+    "domain_climate": {
+      "g": "Domain",
+      "name": "Climate tech, sustainability, civic tech, public sector",
+      "type": "Domain"
+    },
+    "domain_edu": {
+      "g": "Domain",
+      "name": "Education, EdTech, startups",
+      "type": "Domain"
+    },
+    "domain_regulated": {
+      "g": "Domain",
+      "name": "Regulated verticals: healthcare, finance, public sector",
+      "type": "Domain"
+    },
+    "enablement": {
+      "g": "Communication and content",
+      "name": "Customer enablement and adoption programs",
+      "type": "Enablement"
+    },
+    "english": {
+      "g": "Language",
+      "name": "Fluent English",
+      "type": "Language"
+    },
+    "eval_models": {
+      "g": "AI quality and config",
+      "name": "Evaluating new models and frameworks",
+      "type": "AI quality"
+    },
+    "frontend": {
+      "g": "Coding and engineering",
+      "name": "Front-end literacy: HTML/CSS, React",
+      "type": "Front end"
+    },
+    "governance": {
+      "g": "AI quality and config",
+      "name": "Governance, responsible AI, compliance",
+      "type": "Governance"
+    },
+    "hackathons": {
+      "g": "Credentials and proof",
+      "name": "AI hackathons or community projects",
+      "type": "Proof of work"
+    },
+    "help_center": {
+      "g": "Communication and content",
+      "name": "Help Center and knowledge base content",
+      "type": "Content"
+    },
+    "knowledge_rag": {
+      "g": "AI quality and config",
+      "name": "Knowledge and RAG configuration",
+      "type": "AI config"
+    },
+    "mcp": {
+      "g": "Coding and engineering",
+      "name": "MCP servers and tooling",
+      "type": "Agent tooling"
+    },
+    "mentoring": {
+      "g": "Ways of working",
+      "name": "Mentoring and technical leadership",
+      "type": "Leadership"
+    },
+    "mobile_design": {
+      "g": "Design",
+      "name": "Mobile app design (iOS/Android), shipped end to end",
+      "type": "UX/Design"
+    },
+    "ms_stack": {
+      "g": "Platforms and tools",
+      "name": "Microsoft agent stack: Copilot Studio, Bot Framework, Teams",
+      "type": "Platform"
+    },
+    "multilingual": {
+      "g": "Language",
+      "name": "Multilingual content and localization with AI",
+      "type": "Language"
+    },
+    "multimodal": {
+      "g": "Design",
+      "name": "Agentic, multimodal and non-deterministic experience design",
+      "type": "Design"
+    },
+    "ownership_ambiguity": {
+      "g": "Ways of working",
+      "name": "End-to-end ownership of loosely defined problems (0→1)",
+      "type": "Mindset"
+    },
+    "presales": {
+      "g": "Consulting and commercial",
+      "name": "Pre-sales support: discovery, scoping, estimates",
+      "type": "Commercial"
+    },
+    "presenting": {
+      "g": "Communication and content",
+      "name": "Presenting and demoing to technical and executive audiences",
+      "type": "Communication"
+    },
+    "product_fluency": {
+      "g": "Platforms and tools",
+      "name": "Deep product fluency on an AI agent platform",
+      "type": "Product expertise"
+    },
+    "prompt_eval": {
+      "g": "AI quality and config",
+      "name": "Prompting, LLM evaluation, guardrails, testing agent answers",
+      "type": "AI quality"
+    },
+    "python": {
+      "g": "Coding and engineering",
+      "name": "Python",
+      "note": "Named in some postings, implied by the frameworks listed in others. One posting asks for programming without naming a language.",
+      "type": "Coding"
+    },
+    "rag_pipelines": {
+      "g": "Coding and engineering",
+      "name": "RAG pipelines, embeddings, vector databases",
+      "type": "Coding/ML"
+    },
+    "req_tools": {
+      "g": "Platforms and tools",
+      "name": "Jira, Confluence, diagramming tools, Office",
+      "type": "Tools"
+    },
+    "requirements_writing": {
+      "g": "Consulting and commercial",
+      "name": "Functional requirements, user stories, acceptance criteria",
+      "type": "Business analysis"
+    },
+    "rtm_uat": {
+      "g": "Consulting and commercial",
+      "name": "Requirements traceability, UAT, status reporting",
+      "type": "Business analysis"
+    },
+    "software_design": {
+      "g": "Coding and engineering",
+      "name": "Software design and scalability",
+      "type": "Coding"
+    },
+    "sql_bi": {
+      "g": "Data and analytics",
+      "name": "Basic SQL and reporting tools",
+      "type": "Data"
+    },
+    "structured_output": {
+      "g": "Coding and engineering",
+      "name": "Structured output validation (Pydantic, typed schemas)",
+      "type": "Coding"
+    },
+    "support_platforms": {
+      "g": "Platforms and tools",
+      "name": "Customer-support platforms: Intercom, Fin, Salesforce",
+      "type": "Platform"
+    },
+    "tech_degree": {
+      "g": "Credentials and proof",
+      "name": "Formal technical degree as target profile",
+      "type": "Credential"
+    },
+    "ux_research": {
+      "g": "Design",
+      "name": "UX research, discovery and validation",
+      "type": "UX"
+    },
+    "vendor_cert": {
+      "g": "Credentials and proof",
+      "name": "Vendor professional certification",
+      "type": "Credential"
+    },
+    "video": {
+      "g": "Communication and content",
+      "name": "Video tutorials and explainer videos",
+      "type": "Video"
+    },
+    "visual_ui": {
+      "g": "Design",
+      "name": "Visual UX/UI craft: Figma, design systems, mockups",
+      "type": "UX/UI"
+    },
+    "voice_design": {
+      "g": "Design",
+      "name": "Voice dialog design, voice AI or TTS experience",
+      "type": "Design (voice)"
+    },
+    "whatsapp": {
+      "g": "Platforms and tools",
+      "name": "WhatsApp Business Platform or similar messaging surfaces",
+      "type": "Platform"
+    }
+  }
+}

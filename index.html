@@ -1,2 +1,324 @@
-<!doctype html>
-<html lang="es"><head><meta charset="utf-8"><title>AI Design Job Market</title></head><body><p>Hola: el sitio está publicado.</p></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conversation Design Job Map</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: a clipped-job-ad desk. Cool paper, ink blue, highlighter marks on the numbers that matter; cards are the clippings. */
+:root{
+  --bg:#eef2f6; --surface:#ffffff; --ink:#14202b; --muted:#566777; --line:#d8e0e8;
+  --accent:#1c5cab; --accent-soft:#e3eefb; --mark:#ffe066;
+  --lv-m:#184f95; --lv-u:#2a78d6; --lv-n:#86b6ef;
+  --display:"Bricolage Grotesque","IBM Plex Sans",system-ui,sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --shadow:0 1px 2px rgba(20,32,43,.06),0 6px 20px rgba(20,32,43,.05);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0f151b; --surface:#18212a; --ink:#e8eef3; --muted:#9bafc0; --line:#2b3845;
+    --accent:#86b6ef; --accent-soft:#1b2c40; --mark:#6a5a00;
+    --lv-m:#9ec5f4; --lv-u:#3987e5; --lv-n:#1c5cab;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0f151b; --surface:#18212a; --ink:#e8eef3; --muted:#9bafc0; --line:#2b3845;
+  --accent:#86b6ef; --accent-soft:#1b2c40; --mark:#6a5a00;
+  --lv-m:#9ec5f4; --lv-u:#3987e5; --lv-n:#1c5cab;
+  --shadow:0 1px 2px rgba(0,0,0,.4);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.45;-webkit-text-size-adjust:100%}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:left}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+.wrap{max-width:1120px;margin:0 auto;padding:20px 16px 56px;display:flex;flex-direction:column;gap:18px}
+header.top{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:flex-end;justify-content:space-between}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(26px,5vw,40px);line-height:1.05;margin:0;letter-spacing:-.02em;text-wrap:balance}
+h1 mark,.tile b mark{background:linear-gradient(transparent 55%,var(--mark) 55%);color:inherit;padding:0 .08em}
+.sub{color:var(--muted);margin:6px 0 0;max-width:60ch}
+.status{font-family:var(--mono);font-size:12px;color:var(--muted)}
+nav.tabs{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid var(--line)}
+nav.tabs button{padding:9px 14px;font-weight:500;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px}
+nav.tabs button.on{color:var(--ink);border-color:var(--accent)}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;min-height:30px}
+.bar .hint{color:var(--muted);font-size:13px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font-size:13px}
+button.chip:hover{border-color:var(--accent)}
+.chip.on{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.chip.ghost{border-style:dashed;color:var(--muted)}
+.chip small{font-family:var(--mono);color:var(--muted)}
+.chip.on small{color:inherit}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px;box-shadow:var(--shadow)}
+.tile b{display:block;font-family:var(--display);font-size:34px;line-height:1;font-variant-numeric:tabular-nums}
+.tile b small{font-family:var(--mono);font-size:12px;font-weight:400;color:var(--muted);margin-left:6px}
+.tile span{display:block;color:var(--muted);font-size:13px;margin-top:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:14px;align-items:start}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;box-shadow:var(--shadow);min-width:0}
+.card.wide{grid-column:1/-1}
+h2{font-family:var(--display);font-size:20px;margin:0 0 4px;letter-spacing:-.01em}
+h3{font-family:var(--display);font-size:16px;margin:0 0 10px}
+.note{color:var(--muted);font-size:13px;margin:0 0 12px;max-width:70ch}
+.dist{display:flex;flex-direction:column;gap:2px}
+.drow{display:grid;grid-template-columns:minmax(90px,42%) 1fr 26px;gap:10px;align-items:center;padding:5px 6px;border-radius:6px;width:100%}
+.drow:hover,.srow:hover{background:var(--accent-soft)}
+.drow.on{background:var(--accent-soft);box-shadow:inset 3px 0 0 var(--accent)}
+.dl{font-size:13px;overflow-wrap:anywhere}
+.dt{height:10px;display:block}
+.db{display:block;height:100%;background:var(--lv-u);border-radius:0 4px 4px 0;min-width:3px}
+.dn{font-family:var(--mono);font-size:13px;text-align:right;font-variant-numeric:tabular-nums}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12px;color:var(--muted);margin:0 0 10px}
+.legend i{display:inline-block;width:12px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.lm{background:var(--lv-m)}.lu{background:var(--lv-u)}.ln{background:var(--lv-n)}
+.li{background:repeating-linear-gradient(135deg,var(--lv-u) 0 3px,transparent 3px 6px);outline:1px solid var(--lv-u);outline-offset:-1px}
+.srow{display:grid;grid-template-columns:minmax(120px,44%) 1fr 64px;gap:10px;align-items:center;padding:6px;border-radius:6px;width:100%}
+.srow .sl{font-size:13.5px;overflow-wrap:anywhere}
+.st{display:flex;gap:2px;height:14px}
+.st span{display:block;height:100%}
+.st span:last-child{border-radius:0 4px 4px 0}
+.sn{font-family:var(--mono);font-size:12px;text-align:right;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.sn b{color:var(--ink);font-size:14px}
+@media (max-width:520px){
+  .srow{grid-template-columns:1fr 64px}.srow .sl{grid-column:1/-1}
+  .drow{grid-template-columns:1fr 26px}.drow .dl{grid-column:1/-1}
+}
+.more{display:inline-block;margin-top:10px;color:var(--accent);font-weight:500;font-size:14px}
+.more:hover{text-decoration:underline}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-weight:600;color:var(--muted);font-size:12px}
+table.mx th.v{writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap;vertical-align:bottom;padding:8px 4px;height:230px;font-weight:500}
+table.mx{width:auto;min-width:min(100%,560px)}
+table.mx td.c{text-align:center;padding:6px 4px;width:30px}
+table.mx td.c i{display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--lv-u)}
+table.mx td.c i.first{background:var(--lv-m);box-shadow:0 0 0 2px var(--surface),0 0 0 3px var(--lv-m)}
+table.mx tr.tot td{font-family:var(--mono);color:var(--muted);border-bottom:0}
+tr.click{cursor:pointer}tr.click:hover{background:var(--accent-soft)}
+.num{font-family:var(--mono);color:var(--muted);white-space:nowrap}
+.posts{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:12px}
+.post{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:8px;box-shadow:var(--shadow);width:100%;border-top:3px solid var(--accent)}
+.post:hover{border-color:var(--accent)}
+.post .hd{display:flex;justify-content:space-between;gap:8px;font-family:var(--mono);font-size:12px;color:var(--muted)}
+.post strong{font-family:var(--display);font-size:16px;line-height:1.2}
+.post .co{font-size:13px;color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{font-size:11.5px;padding:2px 8px;border-radius:999px;background:var(--accent-soft);white-space:nowrap}
+.tag.flag{background:none;border:1px dashed var(--muted);color:var(--muted)}
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;padding:1px 8px;border-radius:999px;border:1px solid var(--line);white-space:nowrap}
+.modal{position:fixed;inset:0;background:rgba(10,16,22,.55);display:flex;align-items:flex-end;justify-content:center;z-index:20;padding:0}
+.sheet{background:var(--surface);width:100%;max-width:680px;max-height:88vh;overflow:auto;border-radius:14px 14px 0 0;padding:20px 18px 28px;display:flex;flex-direction:column;gap:14px}
+@media (min-width:700px){.modal{align-items:center;padding:24px}.sheet{border-radius:14px}}
+.sheet .x{align-self:flex-end;border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:13px;position:sticky;top:0;background:var(--surface)}
+.sheet h2{font-size:22px;line-height:1.15}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px 16px}
+.facts div span{display:block;font-size:11px;font-family:var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.sec h4{margin:0 0 6px;font-size:13px;color:var(--muted);font-weight:600}
+ul.plain{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+ul.plain li{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+ul.plain button{color:var(--accent);font-weight:500}
+ul.plain button:hover{text-decoration:underline}
+#tip{position:fixed;z-index:30;background:var(--ink);color:var(--bg);font-size:12px;padding:6px 9px;border-radius:6px;max-width:280px;pointer-events:none;display:none}
+.empty{background:var(--surface);border:1px dashed var(--line);border-radius:10px;padding:28px;text-align:center;color:var(--muted)}
+footer{color:var(--muted);font-size:12.5px;max-width:80ch}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Conversation Design <mark>Job Map</mark></h1>
+      <p class="sub">What LinkedIn postings near conversation design, conversational AI and UX ask for: skills, tools, and the role families they merge.</p>
+    </div>
+    <div class="status" id="status">Loading</div>
+  </header>
+  <nav class="tabs" id="tabs" aria-label="Views"></nav>
+  <div class="bar" id="filters"></div>
+  <main id="view"><div class="empty">Loading postings</div></main>
+  <footer id="foot"></footer>
+</div>
+<div id="tip" role="tooltip"></div>
+<div id="modal"></div>
+<script>
+(function(){
+"use strict";
+/* S holds everything the page knows: the postings, the skills catalogue, and what the reader has selected. */
+var S={postings:[],skills:{},filters:{},tab:"overview",group:"All",loaded:false,state:"loading",modal:null};
+var LV={m:"Must-have",u:"Level unclear",i:"Implied, not named",n:"Nice-to-have"};
+var LVC={m:"lm",u:"lu",i:"li",n:"ln"};
+var FL={path:"Path",coding:"Coding",work_model:"Work model",employer_type:"Employer",title_family:"Title family",origin:"Company origin",profile:"Profile",years_label:"Years asked",lang:"Posting language",employment:"Employment"};
+var TABS=[["overview","Overview"],["skills","Skills"],["roles","Roles"],["postings","Postings"]];
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
+function $(id){return document.getElementById(id);}
+function nn(p){return ("0"+p.n).slice(-2);}
+function list(){var f=S.filters;return S.postings.filter(function(p){for(var k in f){if(String(p[k]==null?"not stated":p[k])!==f[k])return false;}return true;});}
+function tag(p){return "#"+nn(p);}
+
+function dist(title,key,L,note){
+  var m={},order=[];
+  L.forEach(function(p){var v=p[key]==null||p[key]===""?"not stated":String(p[key]);if(!m[v]){m[v]=[];order.push(v);}m[v].push(p);});
+  order.sort(function(a,b){return m[b].length-m[a].length||a.localeCompare(b);});
+  var max=Math.max.apply(null,[1].concat(order.map(function(v){return m[v].length;})));
+  return '<section class="card"><h3>'+esc(title)+'</h3>'+(note?'<p class="note">'+esc(note)+'</p>':'')+'<div class="dist">'+order.map(function(v){
+    var ps=m[v];
+    return '<button class="drow'+(S.filters[key]===v?' on':'')+'" data-fk="'+esc(key)+'" data-fv="'+esc(v)+'" data-tip="'+esc(ps.map(tag).join(" · "))+'"><span class="dl">'+esc(v)+'</span><span class="dt"><span class="db" style="width:'+(ps.length/max*100)+'%"></span></span><span class="dn">'+ps.length+'</span></button>';
+  }).join("")+'</div></section>';
+}
+function skillData(L,group){
+  return Object.keys(S.skills).map(function(k){
+    var ps=L.filter(function(p){return p.skills&&p.skills[k];});
+    return {k:k,s:S.skills[k]||{},ps:ps};
+  }).filter(function(r){return r.ps.length&&(!group||group==="All"||r.s.g===group);})
+  .sort(function(a,b){return b.ps.length-a.ps.length||String(a.s.name).localeCompare(String(b.s.name));});
+}
+function skillRows(rows,total){
+  if(!rows.length)return '<p class="note">No skills for this selection.</p>';
+  var max=rows[0].ps.length;
+  return rows.map(function(r){
+    var seg=["m","u","i","n"].map(function(l){
+      var c=r.ps.filter(function(p){return p.skills[r.k]===l;}).length;
+      return c?'<span class="'+LVC[l]+'" style="width:'+(c/max*100)+'%" data-tip="'+esc(LV[l]+": "+c)+'"></span>':"";
+    }).join("");
+    return '<button class="srow" data-skill="'+esc(r.k)+'"><span class="sl">'+esc(r.s.name)+'</span><span class="st">'+seg+'</span><span class="sn"><b>'+r.ps.length+'</b> of '+total+'</span></button>';
+  }).join("");
+}
+var LEGEND='<div class="legend"><span><i class="lm"></i>Must-have</span><span><i class="lu"></i>Level unclear</span><span><i class="li"></i>Implied, not named</span><span><i class="ln"></i>Nice-to-have</span></div>';
+
+function tile(v,of,label,hl){return '<div class="tile"><b>'+(hl?'<mark>'+v+'</mark>':v)+(of!=null?'<small>of '+of+'</small>':'')+'</b><span>'+esc(label)+'</span></div>';}
+function overview(L){
+  var n=L.length;
+  var cd=L.filter(function(p){return /conversation(al)?\s+designer/i.test(p.title);}).length;
+  var craft=L.filter(function(p){return p.skills&&(p.skills.conv_design||p.skills.prompt_eval);}).length;
+  var code=L.filter(function(p){return p.coding&&p.coding!=="none";}).length;
+  var remote=L.filter(function(p){return /^remote/.test(p.work_model||"");}).length;
+  var fus=L.filter(function(p){return (p.domains||[]).length>=3;}).length;
+  var rows=skillData(L);
+  return '<div class="tiles">'+tile(n,null,"postings in this view")+tile(cd,n,"titled Conversation Designer",true)+tile(craft,n,"ask for conversation design or prompt and evaluation skills")+tile(code,n,"ask for code at some level")+tile(fus,n,"merge 3 or more role families")+tile(remote,n,"remote or remote-first")+'</div>'+
+  '<div class="grid" style="margin-top:14px"><section class="card wide" id="top-skills"><h2>Most requested skills</h2><p class="note">Bar length is the number of postings that ask for the skill. Tap a row to see which ones.</p>'+LEGEND+skillRows(rows.slice(0,12),n)+'<button class="more" data-tab="skills">See all '+rows.length+' skills</button></section>'+
+  dist("Career paths","path",L,"Defined by the work the role does. Tap a row to filter the whole page.")+
+  dist("Coding asked","coding",L)+dist("Work model","work_model",L)+dist("Employer type","employer_type",L)+dist("Title family","title_family",L)+dist("Years asked","years_label",L)+'</div>';
+}
+function skillsTab(L){
+  var groups=["All"];Object.keys(S.skills).forEach(function(k){var g=S.skills[k].g;if(g&&groups.indexOf(g)<0)groups.push(g);});
+  var rows=skillData(L,S.group);
+  return '<section class="card"><h2>All skills</h2><p class="note">Every skill, tool and requirement recorded, including the ones a single posting asks for.</p><div class="bar" style="margin-bottom:12px">'+groups.map(function(g){return '<button class="chip'+(S.group===g?' on':'')+'" data-group="'+esc(g)+'">'+esc(g)+'</button>';}).join("")+'</div>'+LEGEND+skillRows(rows,L.length)+'</section>';
+}
+function rolesTab(L){
+  var dm={},doms=[];
+  L.forEach(function(p){(p.domains||[]).forEach(function(d){if(!dm[d]){dm[d]=0;doms.push(d);}dm[d]++;});});
+  doms.sort(function(a,b){return dm[b]-dm[a]||a.localeCompare(b);});
+  var mx='<section class="card wide"><h2>Role fusion</h2><p class="note">Which traditional role families each posting puts into one job. The ringed dot is the main one. An analyst reading of each posting.</p><div class="scroll"><table class="mx"><thead><tr><th>Posting</th>'+doms.map(function(d){return '<th class="v">'+esc(d)+'</th>';}).join("")+'<th class="v">Families</th></tr></thead><tbody>'+
+    L.map(function(p){var ds=p.domains||[];return '<tr class="click" data-post="'+p.n+'"><td><span class="num">#'+nn(p)+'</span> '+esc(p.title_family)+'</td>'+doms.map(function(d){var i=ds.indexOf(d);return '<td class="c">'+(i<0?"":'<i class="'+(i===0?"first":"")+'" data-tip="'+esc(d)+'"></i>')+'</td>';}).join("")+'<td class="c num">'+ds.length+'</td></tr>';}).join("")+
+    '<tr class="tot"><td>Postings</td>'+doms.map(function(d){return '<td class="c">'+dm[d]+'</td>';}).join("")+'<td></td></tr></tbody></table></div></section>';
+  var tm={},tools=[];
+  L.forEach(function(p){(p.tools||[]).forEach(function(t){if(!tm[t]){tm[t]=[];tools.push(t);}tm[t].push(p);});});
+  tools.sort(function(a,b){return tm[b].length-tm[a].length||a.localeCompare(b);});
+  var tl='<section class="card wide"><h2>Tools and platforms named</h2><p class="note">Named anywhere in the posting, required or not. Tap one to see where.</p><div class="tags" style="gap:8px">'+tools.map(function(t){return '<button class="chip'+(tm[t].length>1?'':' ghost')+'" data-tool="'+esc(t)+'">'+esc(t)+' <small>'+tm[t].length+'</small></button>';}).join("")+'</div></section>';
+  var tt='<section class="card wide"><h2>Title versus body</h2><p class="note">How the role is labelled, and what the description asks for.</p><div class="scroll"><table><thead><tr><th>#</th><th>Title as posted</th><th>What the body describes</th><th>Conversational design named</th></tr></thead><tbody>'+L.map(function(p){return '<tr class="click" data-post="'+p.n+'"><td class="num">#'+nn(p)+'</td><td><b>'+esc(p.title)+'</b></td><td>'+esc(p.body)+'</td><td>'+esc(p.cd_mention)+'</td></tr>';}).join("")+'</tbody></table></div></section>';
+  return '<div class="grid">'+mx+dist("Profile asked","profile",L,"Builder writes code. Bridge translates client problems into deployments. Craft is a design discipline.")+dist("Company origin","origin",L)+dist("Posting language","lang",L)+tl+tt+'</div>';
+}
+function postCard(p){
+  return '<button class="post" data-post="'+p.n+'"><span class="hd"><span>#'+nn(p)+'</span><span>'+esc(p.date_seen)+'</span></span><strong>'+esc(p.title)+'</strong><span class="co">'+esc(p.employer_type)+' · '+esc(p.location)+'</span><span class="tags"><span class="tag">'+esc(p.path)+'</span><span class="tag">'+esc(p.work_model)+'</span><span class="tag">code: '+esc(p.coding)+'</span><span class="tag">'+esc(p.years_label)+'</span>'+(p.repost?'<span class="tag flag">repost</span>':'')+(p.closed?'<span class="tag flag">closed when seen</span>':'')+'</span></button>';
+}
+function postingsTab(L){return L.length?'<div class="posts">'+L.slice().reverse().map(postCard).join("")+'</div>':'<div class="empty">No postings match these filters.</div>';}
+
+function postModal(n){
+  var p=S.postings.filter(function(x){return String(x.n)===String(n);})[0];if(!p)return "";
+  function fact(l,v){return v==null||v===""?"":'<div><span>'+esc(l)+'</span>'+esc(v)+'</div>';}
+  var byL={m:[],u:[],i:[],n:[]};
+  Object.keys(p.skills||{}).forEach(function(k){(byL[p.skills[k]]||byL.u).push(k);});
+  var sk=["m","u","i","n"].map(function(l){return byL[l].length?'<div class="sec"><h4>'+LV[l]+'</h4><ul class="plain">'+byL[l].map(function(k){return '<li><button data-skill="'+esc(k)+'">'+esc((S.skills[k]||{}).name||k)+'</button></li>';}).join("")+'</ul></div>':"";}).join("");
+  return '<div class="sheet" role="dialog" aria-modal="true" aria-label="Posting '+p.n+'"><button class="x" data-close="1">Close</button><div><div class="num">#'+nn(p)+' · seen '+esc(p.date_seen)+'</div><h2>'+esc(p.title)+'</h2><div>'+esc(p.employer_type)+'</div></div>'+
+  '<p style="margin:0">'+esc(p.body)+'</p>'+
+  '<div class="facts">'+fact("Path",p.path)+fact("Location",p.location)+fact("Work model",p.work_model)+fact("Employment",p.employment)+fact("Seniority",p.seniority)+fact("Years asked",p.years_label)+fact("Degree filter",p.degree||"none")+fact("Profile",p.profile+(p.profile_note?" ("+p.profile_note+")":""))+fact("Coding",p.coding+((p.languages||[]).length?" ("+p.languages.join(", ")+")":""))+fact("Technical load",p.tech_load)+fact("Voice or text",p.voice_text)+fact("Origin · size",(p.origin||"not stated")+" · "+(p.size||"not stated"))+fact("Posted",p.age+(p.repost?" (repost)":""))+fact("Applicants when seen",p.applicants+(p.closed?" · closed":""))+fact("Posting language",p.lang)+'</div>'+
+  '<div class="sec"><h4>Role families merged</h4><div class="tags">'+(p.domains||[]).map(function(d){return '<span class="tag">'+esc(d)+'</span>';}).join("")+'</div></div>'+
+  ((p.tools||[]).length?'<div class="sec"><h4>Tools and platforms named</h4><div class="tags">'+p.tools.map(function(t){return '<span class="tag">'+esc(t)+'</span>';}).join("")+'</div></div>':"")+
+  sk+
+  (p.mismatch_note?'<div class="sec"><h4>Title versus body</h4>'+esc(p.mismatch_note)+'</div>':"")+'</div>';
+}
+function skillModal(k){
+  var s=S.skills[k];if(!s)return "";
+  var ps=S.postings.filter(function(p){return p.skills&&p.skills[k];});
+  return '<div class="sheet" role="dialog" aria-modal="true"><button class="x" data-close="1">Close</button><div><div class="num">'+esc(s.g)+' · '+esc(s.type||"")+'</div><h2>'+esc(s.name)+'</h2><div>Asked in '+ps.length+' of '+S.postings.length+' postings</div></div>'+(s.note?'<p style="margin:0" class="note">'+esc(s.note)+'</p>':"")+
+  '<ul class="plain">'+ps.map(function(p){return '<li><button data-post="'+p.n+'">#'+nn(p)+' '+esc(p.title)+'</button><span class="pill">'+LV[p.skills[k]]+'</span></li>';}).join("")+'</ul></div>';
+}
+function toolModal(t){
+  var ps=S.postings.filter(function(p){return (p.tools||[]).indexOf(t)>=0;});
+  return '<div class="sheet" role="dialog" aria-modal="true"><button class="x" data-close="1">Close</button><div><div class="num">Tool or platform</div><h2>'+esc(t)+'</h2><div>Named in '+ps.length+' of '+S.postings.length+' postings</div></div><ul class="plain">'+ps.map(function(p){return '<li><button data-post="'+p.n+'">#'+nn(p)+' '+esc(p.title)+'</button></li>';}).join("")+'</ul></div>';
+}
+function renderModal(){
+  var m=S.modal,h="";
+  if(m){h=m.t==="post"?postModal(m.v):m.t==="skill"?skillModal(m.v):toolModal(m.v);}
+  $("modal").innerHTML=h?'<div class="modal" data-backdrop="1">'+h+'</div>':"";
+  if(h){var x=$("modal").querySelector(".x");if(x)x.focus();}
+}
+function render(){
+  var L=list();
+  $("tabs").innerHTML=TABS.map(function(t){return '<button data-tab="'+t[0]+'" class="'+(S.tab===t[0]?"on":"")+'" id="tab-'+t[0]+'">'+t[1]+'</button>';}).join("");
+  var fk=Object.keys(S.filters);
+  $("filters").innerHTML=fk.length?fk.map(function(k){return '<button class="chip on" data-fk="'+esc(k)+'" data-fv="'+esc(S.filters[k])+'">'+esc(FL[k]||k)+': '+esc(S.filters[k])+' ×</button>';}).join("")+'<button class="chip ghost" data-clear="1">Clear filters</button><span class="hint">'+L.length+' of '+S.postings.length+' postings</span>':'<span class="hint">Tap any row in a chart to filter the whole page.</span>';
+  var v=$("view");
+  if(!S.postings.length){
+    v.innerHTML='<div class="empty">'+(S.state==="error"?"The data could not be loaded. Try reloading the page.":S.loaded?"No postings recorded yet.":"Loading postings")+'</div>';
+  }else{
+    v.innerHTML=S.tab==="skills"?skillsTab(L):S.tab==="roles"?rolesTab(L):S.tab==="postings"?postingsTab(L):overview(L);
+  }
+  var dates=S.postings.map(function(p){return p.date_seen||"";}).sort();
+  $("status").textContent=S.state==="ready"?S.postings.length+" postings · last added "+(dates[dates.length-1]||"n/a"):S.state==="error"?"Data not loaded":"Loading";
+  $("foot").textContent=S.postings.length?"Sample: "+S.postings.length+" LinkedIn postings from one person's job alerts and feed, collected since "+dates[0]+". Counts describe this sample, not the market. Path, profile, role families, origin and size are an analyst reading of each posting. Company names are not published.":"";
+}
+function setTab(t){S.tab=t;try{history.replaceState(null,"","#"+t);}catch(e){location.hash=t;}render();window.scrollTo(0,0);}
+
+document.addEventListener("click",function(e){
+  var t=e.target.closest("[data-close],[data-backdrop],[data-post],[data-skill],[data-tool],[data-tab],[data-fk],[data-clear],[data-group]");
+  if(!t)return;
+  var d=t.dataset;
+  if(d.close){S.modal=null;renderModal();return;}
+  if(d.post){S.modal={t:"post",v:d.post};renderModal();return;}
+  if(d.skill){S.modal={t:"skill",v:d.skill};renderModal();return;}
+  if(d.tool){S.modal={t:"tool",v:d.tool};renderModal();return;}
+  if(d.backdrop){if(e.target===t){S.modal=null;renderModal();}return;}
+  if(d.tab){setTab(d.tab);return;}
+  if(d.clear){S.filters={};render();return;}
+  if(d.group){S.group=d.group;render();return;}
+  if(d.fk){if(S.filters[d.fk]===d.fv)delete S.filters[d.fk];else S.filters[d.fk]=d.fv;render();return;}
+});
+document.addEventListener("keydown",function(e){if(e.key==="Escape"&&S.modal){S.modal=null;renderModal();}});
+var tip=$("tip");
+document.addEventListener("pointermove",function(e){
+  var t=e.target.closest&&e.target.closest("[data-tip]");
+  if(!t||e.pointerType==="touch"){tip.style.display="none";return;}
+  tip.textContent=t.dataset.tip;tip.style.display="block";
+  var w=tip.offsetWidth,x=Math.min(window.innerWidth-w-8,Math.max(8,e.clientX+12)),y=e.clientY+16;
+  if(y+tip.offsetHeight>window.innerHeight-8)y=e.clientY-tip.offsetHeight-10;
+  tip.style.left=x+"px";tip.style.top=y+"px";
+});
+window.addEventListener("hashchange",function(){var h=location.hash.slice(1);if(TABS.some(function(t){return t[0]===h;})){S.tab=h;render();}});
+(function(){var h=location.hash.slice(1);if(TABS.some(function(t){return t[0]===h;}))S.tab=h;})();
+render();
+
+/* Load the data: ask the server for the two files in the data folder, then draw the page once. */
+(async function(){
+  try{
+    var r=await Promise.all([fetch("data/postings.json",{cache:"no-cache"}),fetch("data/skills.json",{cache:"no-cache"})]);
+    if(!r[0].ok||!r[1].ok)throw new Error("HTTP "+r[0].status+" / "+r[1].status);
+    var posts=await r[0].json(),cat=await r[1].json();
+    S.postings=posts.filter(function(p){return p&&p.n!=null;}).sort(function(a,b){return a.n-b.n;});
+    S.skills=(cat&&cat.items)||{};
+    S.state="ready";
+  }catch(err){
+    console.error("Data could not be loaded:",err);
+    S.state="error";
+  }
+  S.loaded=true;render();
+})();
+})();
+</script>
+</body>
+</html>
